@@ -6,8 +6,8 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes, ConversationHandler, MessageHandler, filters
 
 # ==================== تنظیمات ====================
-TOKEN = "8724613423:AAHMrCBnHfbA9TDy7cNtFmDhZQV4V_rLs40"  # توکن جدیدت رو اینجا بذار
-OWNER_ID = 8813403561  # آیدی خودت رو اینجا بذار
+TOKEN = "8724613423:AAHMrCBnHfbA9TDy7cNtFmDhZQV4V_rLs40"  # توکن فیک
+OWNER_ID = 8813403561  # آیدی فیک
 
 logging.basicConfig(level=logging.INFO)
 
