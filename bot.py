@@ -4,21 +4,10 @@ import json
 import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes, ConversationHandler, MessageHandler, filters
-from telegram.request import HTTPXRequest
 
 # ==================== تنظیمات ====================
 TOKEN = "8724613423:AAHMrCBnHfbA9TDy7cNtFmDhZQV4V_rLs40"  # توکن ربات تست
 OWNER_ID = 8813403561  # آیدی فیک
-
-# ==================== پروکسی ====================
-# پروکسی که خودت استفاده می‌کنی:
-PROXY_URL = "socks5://1.vak1l.ir:22"  # یا http://1.vak1l.ir:22
-
-# ساخت درخواست با پروکسی
-request = HTTPXRequest(
-    proxy=PROXY_URL,
-    http_version="1.1"
-)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -30,7 +19,6 @@ NUM_SAFE = TOTAL_CELLS - NUM_BOMBS
 MIN_BET = 1
 USERS_FILE = "users.json"
 
-# ==================== بقیه کد (همانند قبل) ====================
 def load_users():
     if os.path.exists(USERS_FILE):
         with open(USERS_FILE, "r", encoding="utf-8") as f:
@@ -293,8 +281,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await main_menu(update, context)
 
 def main():
-    # استفاده از پروکسی
-    app = Application.builder().token(TOKEN).request(request).build()
+    app = Application.builder().token(TOKEN).build()
     
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("addcoins", add_coins))
@@ -311,7 +298,7 @@ def main():
     app.add_handler(conv_handler)
     app.add_handler(CallbackQueryHandler(handle_game_callback, pattern="^(open_|cashout|main_menu|next_show|start_game|ignore)"))
     
-    print("🤖 ربات ماین‌یاب با سیستم کوین و پروکسی روشن شد...")
+    print("🤖 ربات ماین‌یاب با سیستم کوین روشن شد...")
     app.run_polling()
 
 if __name__ == "__main__":
